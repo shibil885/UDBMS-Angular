@@ -1,0 +1,41 @@
+<div class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75">
+  <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-lg">
+    <div class="bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+      <button type="button" class="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-full" (click)="closeModal()">X</button>
+    </div>
+    <div class="bg-gray-200 px-4 py-5 sm:p-6">
+      <h2 class="text-2xl font-semibold text-center mb-4">Edit User</h2>
+      <form [formGroup]="editUserForm" (ngSubmit)="submitForm()" class="space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="name" class="sr-only">Full Name</label>
+            <input id="name" formControlName="name" type="text" autocomplete="name" required
+              class="block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Full Name">
+            <div *ngIf="editUserForm.get('name')?.touched && editUserForm.get('name')?.invalid" class="text-red-600">Name is required</div>
+          </div>
+          <div>
+            <label for="phone" class="sr-only">Phone</label>
+            <input id="phone" formControlName="phone" type="tel" autocomplete="tel" required
+              class="block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Phone">
+            <div *ngIf="editUserForm.get('phone')?.touched && editUserForm.get('phone')?.invalid" class="text-red-600">Phone is required</div>
+          </div>
+        </div>
+        <div>
+          <label for="email-address" class="sr-only">Email address</label>
+          <input id="email-address" formControlName="email" type="email" autocomplete="email" required
+            class="block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Email address">
+          <div *ngIf="editUserForm.get('email')?.touched && editUserForm.get('email')?.invalid" class="text-red-600">Valid email is required</div>
+        </div>
+        <div>
+          <button type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+            Edit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

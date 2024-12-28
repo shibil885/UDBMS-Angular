@@ -1,0 +1,71 @@
+<body class="text-white flex items-center justify-center min-h-screen" style="background-color: #0e0e11;">
+  <div class="w-full max-w-md p-8 space-y-8 rounded-lg shadow-md" style="background-color: #3d3d3d;">
+      <div class="text-center">
+          <h2 class="mt-6 text-3xl font-extrabold">Create your account</h2>
+          <p class="text-red-500 text-center">{{ errorMessage$ | async }}</p>
+      </div>
+      <form [formGroup]="signupForm" (ngSubmit)="submitForm()" class="mt-8 space-y-6">
+          <div class="rounded-md shadow-sm space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                  <div>
+                      <label for="name" class="sr-only">Full Name</label>
+                      <input id="name" formControlName="name" type="text" autocomplete="name" required
+                          class="block w-full px-3 py-2 border bg-gray-500 border-gray-300 placeholder-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          placeholder="Full Name">
+                      <div *ngIf="name?.touched && name?.invalid" class="text-red-500">
+                          <div *ngIf="name?.errors?.['required']">Name is required.</div>
+                          <div *ngIf="name?.errors?.['minlength']">Name must be at least 3 characters.</div>
+                      </div>
+                  </div>
+                  <div>
+                      <label for="phone" class="sr-only">Phone</label>
+                      <input id="phone" formControlName="phone" type="tel" autocomplete="tel"
+                          class="block w-full px-3 py-2 border bg-gray-500 border-gray-300 placeholder-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          placeholder="Phone">
+                      <div *ngIf="phone?.touched && phone?.invalid" class="text-red-500">
+                          <div *ngIf="phone?.errors?.['pattern']">Invalid phone number.</div>
+                      </div>
+                  </div>
+              </div>
+              <div>
+                  <label for="email-address" class="sr-only">Email address</label>
+                  <input id="email-address" formControlName="email" type="email" autocomplete="email" required
+                      class="block w-full px-3 py-2 border bg-gray-500 border-gray-300 placeholder-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder="Email address">
+                  <div *ngIf="email?.touched && email?.invalid" class="text-red-500">
+                      <div *ngIf="email?.errors?.['required']">Email is required.</div>
+                      <div *ngIf="email?.errors?.['email']">Invalid email address.</div>
+                  </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                  <div>
+                      <label for="password" class="sr-only">Password</label>
+                      <input id="password" formControlName="password" type="password" autocomplete="new-password" required
+                          class="block w-full px-3 py-2 border bg-gray-500 border-gray-300 placeholder-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          placeholder="Password">
+                      <div *ngIf="password?.touched && password?.invalid" class="text-red-500">
+                          <div *ngIf="password?.errors?.['required']">Password is required.</div>
+                          <div *ngIf="password?.errors?.['minlength']">Password must be at least 8 characters.</div>
+                      </div>
+                  </div>
+                  <div>
+                      <label for="confirm-password" class="sr-only">Confirm Password</label>
+                      <input id="confirm-password" formControlName="confirmPassword" type="password" autocomplete="new-password" required
+                          class="block w-full px-3 py-2 border bg-gray-500 border-gray-300 placeholder-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          placeholder="Confirm Password">
+                      <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid" class="text-red-500">
+                          <div *ngIf="confirmPassword?.errors?.['required']">Confirm Password is required.</div>
+                          <div *ngIf="signupForm?.errors?.['mismatch']">Passwords do not match.</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div>
+              <button type="submit"
+                  class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                  Sign Up
+              </button>
+          </div>
+      </form>
+  </div>
+</body>
